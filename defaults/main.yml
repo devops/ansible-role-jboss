@@ -1,0 +1,16 @@
+---
+# defaults file for ansible-role-jboss
+
+jboss_dependencies:
+  - java-1.6.0-openjdk
+  - unzip
+
+jboss_src_url : "http://127.0.0.1"
+jboss_location: "/opt"
+
+jboss_packages: "jboss-6.1.0.Final"
+
+jboss_java_home: "/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/"
+jboss_db_user: "jboos"
+jboss_db_password: "jboss"
+jboss_db_url: "jdbc:mysql://127.0.0.1:3306/jboss"

@@ -1,0 +1,10 @@
+---
+- name: Install Jboss.
+  hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-role-jboss
+      jboss_location: "/opt"
+      jboss_db_user: "jboss"
+      jboss_db_password: "jboss"
+      jboss_db_url: "jdbc:mysql://127.0.0.1:3306/jboss"

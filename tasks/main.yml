@@ -1,0 +1,34 @@
+---
+# tasks file for ansible-role-jboss
+
+- name: Install jdk
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - "{{ jboss_dependencies }}"
+
+- name: Get Jboss package.
+  get_url:
+    url: "{{ jboss_src_url }}/{{ jboss_packages }}.tar.gz"
+    dest: "{{ jboss_location }}/{{ jboss_packages }}.tar.gz"
+
+- name: Install  && unzip Jboss.
+  shell: |
+    cd "{{ jboss_location }}"
+    tar zxvf "{{ jboss_packages }}.tar.gz"
+
+- name: Configure jboss(1).
+  template:
+    src: runReport.sh.j2
+    dest: "{{ jboss_location }}/{{ jboss_packages}}/bin/runReport.sh"
+
+- name: Configure jboss(2).
+  template:
+    src: run.conf.j2
+    dest: "{{ jboss_location }}/{{ jboss_packages}}/bin/run.conf"
+
+- name: Configure jboss(3).
+  template:
+    src: mysql-ds.xml.j2
+    dest: "{{ jboss_location }}/{{ jboss_packages}}/server/default/deploy/mysql-ds.xml"

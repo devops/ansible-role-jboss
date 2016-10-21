@@ -1,0 +1,1 @@
+nohup {{ jboss_location }}/{{ jboss_packages }}/bin/run.sh  -b {{ ansible_default_ipv4.address }} -c default  -Djboss.service.binding.set=ports-report >>/dev/null 2>&1 &
